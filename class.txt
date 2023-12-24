@@ -1,0 +1,22 @@
+class Human {
+    constructor() {}
+
+    static helloWorld() {
+        console.log("Hello World");
+    }
+
+    helloWorld2() {
+        console.log("Hello World 2");
+    }
+
+    helloWorld3() {
+        console.log("Hellow world 3");
+    }
+}
+
+const myClass = new Human(); // Instance class of Human
+// myClass.helloWorld();
+
+Human.helloWorld();
+myClass.helloWorld2();
+myClass.helloWorld3();
