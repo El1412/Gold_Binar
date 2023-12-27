@@ -1,12 +1,15 @@
+const { knex } = require("../dbConnection");
+
 const {
     modelCreateUser,
     modelGetUserId,
+    modellistAllUsers,
     modelPutUserId,
     modelDeleteUserId,
 } = require("../models/userModel");
 
 class UserController {
-    static createUser(req, res) {
+    static async createUser(req, res) {
         console.log(req.body);
         if (
             req.body.nama === null ||
@@ -47,9 +50,10 @@ class UserController {
             message: "Success",
         });
     }
-    static getUserId(req, res) {
-        let user = modelGetUserId(req);
+    static async getUserId(req, res) {
+        let user = await modelGetUserId(req);
         let userID = req.params.Id;
+
         if (user != undefined) {
             //apabila user id ketemu
             res.status(200).json({
@@ -63,6 +67,12 @@ class UserController {
             });
             return;
         }
+    }
+    static async listAllUsers(req, res) {
+        const users = await modellistAllUsers(req);
+        res.json({
+            users: users.rows,
+        });
     }
 
     static putUserId(req, res) {

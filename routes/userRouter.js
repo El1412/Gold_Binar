@@ -8,6 +8,7 @@ const userRouter = express.Router(); //* Grouping terhadap endpoint yg punya pre
 //* Parameter kedua adalah handler, handler sendiri adalah callback function yang punya 3 parameter (req, res, next)
 
 userRouter.post("/", UserController.createUser);
+userRouter.get("/", UserController.listAllUsers);
 userRouter.get("/:Id", UserController.getUserId);
 userRouter.put("/:Id", UserController.putUserId);
 userRouter.delete("/:Id", UserController.deleteUserId);
