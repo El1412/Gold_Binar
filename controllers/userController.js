@@ -44,11 +44,17 @@ class UserController {
             return;
         }
 
-        modelCreateUser(req);
+        try {
+            await modelCreateUser(req);
 
-        res.status(201).json({
-            message: "Success",
-        });
+            res.status(201).json({
+                message: "Success",
+            });
+        } catch (error) {
+            res.status(400).json({
+                message: error,
+            });
+        }
     }
     static async getUserId(req, res) {
         let user = await modelGetUserId(req);
@@ -75,11 +81,11 @@ class UserController {
         });
     }
 
-    static putUserId(req, res) {
-        let user = modelGetUserId(req);
+    static async putUserId(req, res) {
+        let user = await modelGetUserId(req);
         let userID = req.params.Id;
         if (user != undefined) {
-            modelPutUserId(req);
+            await modelPutUserId(req);
             res.status(200).json({
                 message: "Success",
             }); //* setelah update
@@ -90,7 +96,7 @@ class UserController {
         }
         return;
     }
-    static deleteUserId(req, res) {
+    static async deleteUserId(req, res) {
         let user = modelGetUserId(req);
         let userID = req.params.Id;
 
