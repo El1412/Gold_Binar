@@ -97,7 +97,7 @@ class UserController {
         return;
     }
     static async deleteUserId(req, res) {
-        let user = modelGetUserId(req);
+        let user = await modelGetUserId(req);
         let userID = req.params.Id;
 
         if (user === undefined) {
